@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Kelulusan TKJ 2</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        h2 { color: #333; margin-bottom: 1.5rem; }
+        input { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+        button { width: 100%; padding: 12px; background-color: #2ecc71; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: 0.3s; }
+        button:hover { background-color: #27ae60; }
+        #result { margin-top: 1.5rem; padding: 15px; border-radius: 6px; display: none; line-height: 1.6; }
+        .lulus { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .tidak-lulus { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Cek Kelulusan TKJ 2</h2>
+    <p>Masukkan Nomor Absen Anda:</p>
+    <input type="number" id="absenInput" placeholder="Contoh: 1" min="1" max="35">
+    <button onclick="cekKelulusan()">Periksa Status</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    // Data siswa kelas TKJ 2 berdasarkan image_a93841.png
+    const dataSiswa = {
+        "1": { nama: "ADE KURNIAWAN", status: "LULUS" },
+        "2": { nama: "ALFIN KURNIAWAN", status: "LULUS" },
+        "3": { nama: "ANI WIDANINGSIH", status: "LULUS" },
+        "4": { nama: "ARIL RUSLI PERMATA", status: "LULUS" },
+        "5": { nama: "ARRAHMA RISHAR", status: "LULUS" },
+        "6": { nama: "DAFA ISNAN KOESWANDA PUTRA", status: "LULUS" },
+        "7": { nama: "DE WIRDA FARDIANTI", status: "LULUS" },
+        "8": { nama: "DIDIN ALDIAN JUNIKA", status: "LULUS" },
+        "9": { nama: "FACHRY AKBAR", status: "TIDAK LULUS" },
+        "10": { nama: "FAJAR SEPTIAN RAMADAN", status: "LULUS" },
+        "11": { nama: "FIKAL SENA ADRIAN", status: "LULUS" },
+        "12": { nama: "INDRI REGITA RAHMADINA", status: "LULUS" },
+        "13": { nama: "KHALILAH SYIFA KHAIRUNNISA", status: "LULUS" },
+        "14": { nama: "LANDUNG FADHIL DIANTORO", status: "LULUS" },
+        "15": { nama: "LUKI ADIANSYA", status: "LULUS" },
+        "16": { nama: "MAMAY NASRULLAH", status: "LULUS" },
+        "17": { nama: "MEILINDA RISMAYANI", status: "LULUS" },
+        "18": { nama: "MUHAMAD RAFLI RUSNADI", status: "LULUS" },
+        "19": { nama: "MUHAMMAD AUDREY SATRIA R.W", status: "LULUS" },
+        "20": { nama: "NALLA GUNAWAN", status: "LULUS" },
+        "21": { nama: "NANANG KURNIAWAN", status: "LULUS" },
+        "22": { nama: "NIRINA AILA NUR AMELIA", status: "LULUS" },
+        "23": { nama: "NURLAILA", status: "LULUS" },
+        "24": { nama: "RAFI FAUZAN", status: "LULUS" },
+        "25": { nama: "REGITA CAHYANI", status: "LULUS" },
+        "26": { nama: "REHAN NOVIANSYAH", status: "LULUS" },
+        "27": { nama: "RIDHO MUNAWAR QURTUBY", status: "LULUS" },
+        "28": { nama: "RISMA MUTIARA KHOFIFAH", status: "LULUS" },
+        "29": { nama: "RIZQIA NUR RAHMA APRILLIANTI", status: "LULUS" },
+        "30": { nama: "SANDI RISWAN MAULANA", status: "LULUS" },
+        "31": { nama: "SEPTIANA MUHAMMAD FAJAR", status: "LULUS" },
+        "32": { nama: "SITI NURHALIZA", status: "LULUS" },
+        "33": { nama: "WILDAN RAMDANI", status: "LULUS" },
+        "34": { nama: "WULANDARI", status: "LULUS" },
+        "35": { nama: "ZAHRA ASYIFA", status: "LULUS" }
+    };
+
+    function cekKelulusan() {
+        const absen = document.getElementById('absenInput').value;
+        const resultDiv = document.getElementById('result');
+        
+        if (dataSiswa[absen]) {
+            const siswa = dataSiswa[absen];
+            resultDiv.style.display = "block";
+            
+            // Set warna kotak berdasarkan status
+            if (siswa.status === "LULUS") {
+                resultDiv.className = "lulus";
+            } else {
+                resultDiv.className = "tidak-lulus";
+            }
+
+            resultDiv.innerHTML = `
+                Nama: <strong>${siswa.nama}</strong><br>
+                Status: <strong>${siswa.status}</strong>
+            `;
+        } else {
+            alert("Nomor absen tidak ditemukan! Masukkan angka 1 - 35.");
+            resultDiv.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
